@@ -23,12 +23,15 @@ class TestGithubOrgClient(unittest.TestCase):
         {'name': 'repo1'}, {'name': 'repo2'}, {'name': 'repo3'}
     ]
 
-    with patch('client.GithubOrgClient._public_repos_url', new_callable=PropertyMock) as mock_public_repos_url:
-        mock_public_repos_url.return_value = 'https://api.github.com/orgs/test_org/repos'
+    with patch('client.GithubOrgClient._public_repos_url', new_callable=Proper
+               tyMock) as mock_public_repos_url:
+        mock_public_repos_url.return_value = 'https: // api.github.com/orgs/
+        test_org/repos'
         client = GithubOrgClient('test_org')
         self.assertEqual(client.public_repos(), expected_repos)
 
-    mock_get_json.assert_called_once_with('https://api.github.com/orgs/test_org/repos')
+    mock_get_json.assert_called_once_with('https: // api.github.com/orgs/test_
+                                          org/repos')i
     mock_public_repos_url.assert_called_once()
     """
     @patch('client.get_json')
