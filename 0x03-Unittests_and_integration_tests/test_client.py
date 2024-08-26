@@ -36,7 +36,6 @@ class TestGithubOrgClient(unittest.TestCase):
     """
     @patch('client.get_json')
     def test_org(self, org_name, mock_json):
-        """ Test method returns correct output """
         endpoint = 'https://api.github.com/orgs/{}'.format(org_name)
         spec = GithubOrgClient(data)
         spec.org()
@@ -46,6 +45,12 @@ class TestGithubOrgClient(unittest.TestCase):
         ("random-url", {'repos_url': 'http://some_url.com'})
     ])
     """
+    def test_has_license(self, repo, license_key, expected):
+        """ Test the has_license method """
+    client = GithubOrgClient("test_org")
+    result = client.has_license(repo, license_key)
+    self.assertEqual(result, expected)
+
     def test_public_repos_url(self, name, result):
         """ Test method returns correct output """
         with patch('client.GithubOrgClient.org',
